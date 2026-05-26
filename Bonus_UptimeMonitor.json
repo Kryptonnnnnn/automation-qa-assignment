@@ -1,0 +1,153 @@
+{
+  "name": "Bonus_UptimeMonitor",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f4b40f00-82c3-4211-9f6e-c2efeba7a845",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://todomvc.com/examples/react/dist/",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "44002736-11cb-402b-bc96-a50662043f28",
+      "name": "HTTP Request",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "2ae738f5-4b14-489d-84eb-3b9ecb5511d7",
+              "leftValue": "={{$json.headers[\"x-cache\"]}}",
+              "rightValue": "200",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        416,
+        0
+      ],
+      "id": "decc3f0b-074e-4157-a1fb-89dc1e351ccd",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://discord.com/api/webhooks/1508548963484307537/EawknUqSKMGhwZqFSZYz5UlphJbQncM3bhstL492Xgcw6I35e8pNkP9D_3gzoqNiMRqG",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "content",
+              "value": "⚠️ Website Down Alert!"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        624,
+        -96
+      ],
+      "id": "b214e667-3a72-4a0c-9e5f-63f06d650430",
+      "name": "HTTP Request1",
+      "retryOnFail": true,
+      "alwaysOutputData": true
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "a73fac20-f7eb-4249-9d81-70ff1be752f7",
+  "meta": {
+    "instanceId": "4dfde8ecc05063db94e0e3c75d06794f540d6b2944221042b042de5ebf32e61e"
+  },
+  "id": "4ePI7i6POlLW1IXU",
+  "tags": []
+}
