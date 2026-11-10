@@ -53,6 +53,19 @@ Daily 09:00 → Build Daily Summary → Discord: Daily Summary
 - **Response-time tracking** per check; stats (checks, avg/max ms, non-200 count, confirmed outages) accumulate in workflow static data.
 - **Daily summary** posts availability and response times, then resets the counters. (Static data persists only while the workflow is **active**.)
 
+## Verification (what was actually run)
+
+Both workflows were imported and executed in a local n8n 2.22.6 instance against the live CoinGecko API (Discord posts went to a local test receiver):
+
+| Scenario | Result | Screenshot |
+|---|---|---|
+| Task 2 happy path | All nodes green; "Hot move" digest sent (top gainer > 5 %) | `screenshot/task2-execution-canvas.png`, `screenshot/successful-execution.png` |
+| Task 2 error path (broken CoinGecko URL) | Error output → `Format Error` → "❌ Morning Brief failed … 404" alert | `screenshot/task2-error-path-test.png` |
+| Bonus, app healthy | Status 200 → no alert (nothing posted) | `screenshot/Bonus-workflow-canvas.png` |
+| Bonus, app returning 404 | Wait 15 s → re-check → "🚨 App DOWN … confirmed on retry" alert | `screenshot/bonus-down-alert-test.png` |
+
+Canvas screenshot for Task 2: `screenshot/workflow-canvas.png`.
+
 ---
 
 ## How to run
