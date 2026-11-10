@@ -4,7 +4,8 @@
 |---|---|
 | Task 1 — QA & debug report | `Task1_QA_Report_Nikhil.pdf` |
 | Task 2 — n8n API workflow | `Task2_Workflow_Nikhil.json` |
-| Bonus — uptime monitor | `Bonus_UptimeMonitor.json` |
+| Bonus — uptime monitor | `Bonus_UptimeMonitor_Nikhil.json` |
+| Brief documentation (1 page) | `Doc.pdf` |
 | Screenshots | `screenshot/` |
 | Loom walkthrough | _add link here_ |
 
@@ -74,5 +75,3 @@ Canvas screenshot for Task 2: `screenshot/workflow-canvas.png`.
 2. **Import from file** each JSON. Open every *Discord* node and select your credential (the JSON carries a placeholder id).
 3. Task 2: click **Execute workflow**. Bonus: activate it (static-data stats need an active workflow).
 4. Test the error path: change the CoinGecko URL to a bad one and execute — a ❌ alert should arrive.
-
-> **Security note:** an earlier version of this repo committed a Discord webhook URL in plain text. That webhook should be deleted in Discord and replaced; it must not be reused.
