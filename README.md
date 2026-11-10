@@ -1,4 +1,4 @@
-# Automation & QA Developer Assessment — Nikhil
+# Automation & QA Developer Assessment
 
 | Deliverable | File |
 |---|---|
