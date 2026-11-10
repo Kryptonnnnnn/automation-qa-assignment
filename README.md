@@ -2,8 +2,8 @@
 
 | Deliverable | File |
 |---|---|
-| Task 1 — QA & debug report | `Task1_QA_Report.pdf` |
-| Task 2 — n8n API workflow | `Task2_Workflow.json` |
+| Task 1 — QA & debug report | `Task1_QA_Report_Nikhil.pdf` |
+| Task 2 — n8n API workflow | `Task2_Workflow_Nikhil.json` |
 | Bonus — uptime monitor | `Bonus_UptimeMonitor.json` |
 | Screenshots | `screenshot/` |
 | Loom walkthrough | _add link here_ |
